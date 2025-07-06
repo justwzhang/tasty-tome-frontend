@@ -1,0 +1,311 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+.background{
+    border-top: 0.5px solid $primary-color-200;
+    background: $background-color;
+    display:flex;
+    flex-direction: column;
+    flex: 1;
+    padding-top:30px;
+    padding-bottom:30px;
+    .header{
+        @include container-box-shadow ($light-gray-200);
+        box-sizing: border-box;
+        width:80%;
+        max-width:1000px;
+        height:50px;
+        background-color: $light-gray-800;
+        margin:auto;
+        display:flex;
+        flex-direction: row;
+        padding:10px 15px;
+        justify-content: space-between;
+        button{
+            background: transparent;
+            color: white;
+            border:none;
+            cursor: pointer;
+        }
+        .left-aligned{
+            height:100%;
+            display:flex;
+            flex-direction: row;
+            gap:20px;
+            select{
+                background: transparent;
+                color: white; 
+                width: 80px;
+                padding-left:5px;
+                border:.5px solid white;
+                border-radius: 5px;
+                height:100%;
+                cursor: pointer;
+                option{
+                    color:black;
+                }
+            }
+            .fa-icon{
+                color:white;
+                font-size: 28px;
+            }
+        }
+        
+    }
+    .paper{
+        font-size:18px;
+        color:$light-gray-1000;
+        box-sizing: border-box;
+        background:white;
+        width: 80%;
+        max-width:1000px;
+        height: 100%;
+        margin:auto;
+        @include container-box-shadow ($light-gray-200);
+        line-height: 24px; 
+        &.graph{
+            background-color: #fffefc; // light paper color
+            background-image:
+                linear-gradient(to right, #cce7ff .05px, transparent 1px),
+                linear-gradient(to bottom, #cce7ff .05px, transparent 1px);
+            background-size: 20px 20px; // size of each grid square
+        }
+        &.lined{
+            background-image:
+                linear-gradient(to bottom, #cce7ff 1px, transparent 1px), // horizontal blue lines
+                linear-gradient(to right, #ff4d4d 1px, transparent 1px),  // vertical red margin
+                linear-gradient(to left, #cce7ff 1px, transparent 1px);
+            background-size:
+                100% 24px,  
+                80px 100%,  
+                80px 100%;  
+            background-repeat:
+                repeat,      
+                no-repeat,   
+                no-repeat; 
+            background-position:
+                left top,     
+                64px top,     
+                calc(100% - 64px) top;
+            
+
+            @media(max-width:$mobile-max-width-small){
+                background-image: linear-gradient(to bottom, #cce7ff 1px, transparent 1px);
+                background-size: 100% 24px; 
+                background-repeat: repeat;
+                background-position: left top;
+            }
+        }
+        &.blank{
+            background-color: white;
+        }
+
+        .inner-container{
+            display: flex;
+            flex-direction: column;
+            gap:30px;
+            height:calc(100% - 80px);
+            margin: 40px 80px;
+            @media(max-width:$mobile-max-width-small){
+                margin: 40px 20px;
+            }
+            .title-container{
+                width:100%;
+                display:flex;
+                flex-direction: row;
+                gap:20px;
+
+                @media(max-width: $mobile-max-width){
+                    flex-direction: column;
+                }
+
+                .image-container{
+                    display:flex;
+                    width:50%;
+                    height:300px;
+                    background: $light-gray-200;
+                    border-radius: 15px;
+                    @include container-box-shadow ($light-gray-600);
+                    @media(max-width: $mobile-max-width){
+                        width:100%;
+                    }
+                    img{
+                        margin:auto;
+                        max-width: 100%;
+                        max-height:100%;
+                    }
+                    
+                }
+                .title-section{
+                    display:flex;
+                    flex-direction: column;
+                    width:50%;
+                    gap:20px;
+                    @media(max-width: $mobile-max-width){
+                        width:100%;
+                    }
+                    .title-card{
+                        font-family: "Caveat", cursive;
+                        font-weight: 700;
+                        font-size: 42px;
+                        line-height: 1;
+                        width:80%;
+                        @media(max-width: $mobile-max-width){
+                            width:100%;
+                        }
+                    }
+                    .info-container{
+                        display:flex;
+                        flex-direction: row;
+                        width:100%;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        .card{
+                            @include common-padding;
+                            font-size:16px;
+                            color:black;
+                            display:flex;
+                            flex-direction:row;
+                            
+                            gap:10px;
+                            border-radius: 15px;
+                            
+                            &.prep{
+                                background:#FEF3C7;
+                                .fa-icon{
+                                    margin:auto;
+                                    color:#D97706;
+
+                                }
+                            }
+
+                            &.cook{
+                                background:#FFEDD5;
+                                .fa-icon{
+                                    margin:auto;
+                                    color:#EA580C;
+
+                                }
+                            }
+                            &.serves{
+                                background:#DBEAFE;
+                                .fa-icon{
+                                    margin:auto;
+                                    color:#2563EB;
+
+                                }
+                            }
+                            &.raiting{
+                                background:#FEF9C3;
+                                .fa-icon{
+                                    margin:auto;
+                                    color:#CA8A04;
+
+                                }
+                            }
+                            &.type{
+                                background:#F3E8FF;
+                                color:#7E22CE;
+                            }
+                            &.link{
+                                background:transparent;
+                                border:.5px solid $light-gray-600;
+                                .fa-icon{
+                                    margin:auto;
+                                    color:black;
+
+                                }
+                            }
+                            .text{
+                                white-space: nowrap;
+                            }
+                            
+                        }
+                    }
+                    
+                }
+            }
+            .main-section{
+                .sub-title{
+                    font-family: "Caveat", cursive;
+                    width:100%;
+                    font-size:38px;
+                    padding: 10px 0;
+                    border-bottom: 2px solid $secondary-color;
+                    font-weight: 700;
+                }
+                .ingredients{
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    padding-left:0;
+                    @media(max-width: $mobile-max-width){
+                        grid-template-columns: repeat(1, 1fr);
+                    }
+                    li {
+                        list-style: none; // Hide default bullet
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        padding-bottom:10px;
+                        &::before {
+                            content: "•"; // or custom symbol
+                            font-size: 40px;
+                            color: $secondary-color;
+                            
+                            // line-height: 1;
+                        }
+                    }
+                }
+                .steps {
+                    counter-reset: step-counter;
+                    list-style: none;
+                    padding-left: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+
+                    li {
+                        counter-increment: step-counter;
+                        position: relative;
+                        padding-left: 3rem;
+                        font-size: 16px;
+                        line-height: 1.5;
+
+                        &::before {
+                            content: counter(step-counter);
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            transform: translateY(-50%);
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            background-color: $secondary-color;
+                            color: white;
+                            font-size: 1rem;
+                            font-weight: bold;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+                }
+            }
+            
+            .note{
+                width:100%;
+                display: flex;
+                flex-direction: column;
+                background-color: $tertuary-color;
+                padding: 20px 40px;
+                box-sizing: border-box;
+                border-left: 6px solid $secondary-color;
+                gap: 20px;
+                .note-title{
+                    font-family: "Caveat", cursive;
+                    font-weight: 700;
+                    font-size:38px;
+                }
+            }
+        }
+    }
+}

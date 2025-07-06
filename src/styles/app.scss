@@ -1,0 +1,16 @@
+@use "./variables.scss" as *;
+
+html, body{
+    height:100%;
+    display:flex;
+    margin:0;
+    overflow-x: hidden;
+    font-family: "Roboto", sans-serif;
+}
+
+#root{
+    display:flex;
+    flex-direction: column;
+    width: 100vw;
+    flex:1;
+}

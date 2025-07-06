@@ -1,0 +1,11 @@
+@mixin container-box-shadow($color){
+    box-shadow: 2px 2px 2px 2px $color;
+}
+
+@mixin handwritten{
+    font-family: "Caveat", cursive;
+}
+
+@mixin common-padding{
+    padding: 5px 10px;
+}
