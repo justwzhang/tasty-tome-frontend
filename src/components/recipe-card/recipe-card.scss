@@ -1,0 +1,72 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.recipe-card{
+    @include container-box-shadow($light-gray-400);
+    @include flex-col;
+    width:100%;
+    min-height: 300px;
+    background: white;
+    border-radius: 15px;
+    display:flex;
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.02);
+    }
+
+    .image-section{
+        height:45%;
+        background: $light-gray-200;
+        border-radius: 15px 15px 0 0;
+        display:flex;
+        img{
+            max-width:100%;
+            max-height: 100%;
+            margin:auto;
+            object-fit: cover
+        }
+    }
+    .recipe-info{
+        @include flex-col;
+        @include common-padding;
+        border-radius: 0 0 15px 15px;
+        color: $light-gray-1000;
+        gap:10px;
+        font-size:14px;
+        .title{
+            color: black;
+            font-size: 24px;
+        }
+        .description{
+            
+        }
+        .tags{
+            @include flex-row;
+            gap:5px;
+            .tag{
+                @include common-padding-small;
+                background:$primary-gradient;
+                color:white;
+                border-radius: 15px;
+            }
+        }
+        .footer{
+            @include flex-row;
+            justify-content: space-between;
+            .left{
+                @include flex-row;
+                gap:13px;
+            }
+            .right{
+
+            }
+            .footer-group{
+                @include flex-row;
+                gap:5px;
+            }
+            .star{
+                color: $secondary-color;
+            }
+        }
+    }
+}

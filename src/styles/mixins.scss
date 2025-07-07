@@ -1,3 +1,5 @@
+@use "./variables.scss" as *;
+
 @mixin container-box-shadow($color){
     box-shadow: 2px 2px 2px 2px $color;
 }
@@ -7,5 +9,24 @@
 }
 
 @mixin common-padding{
+    padding: 10px 15px;
+}
+
+@mixin common-padding-small{
     padding: 5px 10px;
+}
+
+@mixin common-border($color){
+    border: 1px solid $color;
+    border-radius: 15px;
+}
+
+@mixin flex-row{
+    display:flex;
+    flex-direction: row;
+}
+
+@mixin flex-col{
+    display: flex;
+    flex-direction: column;
 }

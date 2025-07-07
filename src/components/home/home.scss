@@ -1,0 +1,79 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.home-background{
+    background: $background-color;
+    display:flex;
+    flex-direction: column;
+    // flex: 1;
+    height: calc(100vh - 100px);
+    box-sizing: border-box;
+
+
+    .home-query-bar{
+        background:white;
+        width: 100%;
+        .inner-container{
+            max-width:1500px;
+            width: calc(100% - 200px);
+            margin:auto;
+            display:flex;
+            flex-direction: row;
+            gap:30px;
+            padding-bottom:20px;
+
+            @media(max-width: $mobile-max-width){
+                width: calc(100% - 50px);
+                flex-direction: column;
+                gap:10px;
+            }
+            .search-bar{
+                box-sizing: border-box;
+                width:90%;
+                padding:10px;
+                border: 1px solid $secondary-color;
+                border-radius: 15px;
+                padding-left: 20px;
+                padding-right:20px;
+                @media(max-width: $mobile-max-width){
+                    width:100%;
+                }
+            }
+            button{
+                display: flex;
+                flex-direction: row;
+                gap:10px;
+                .icon{
+                    color:$primary-color-200;
+                    font-size: 18px;
+                }
+            }
+        }
+        
+    }
+
+    .home-card-list{
+        display:flex;
+        overflow-y: auto;
+        flex:1;
+        padding-bottom: 30px;
+        .inner-container{
+            max-width:1500px;
+            padding-top:30px;
+            width: calc(100% - 200px);
+            margin:auto;
+            display:grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap:30px;
+            @media(max-width: $mobile-max-width){
+                width: calc(100% - 50px);
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media(max-width:$mobile-max-width-small){
+                width: calc(100% - 50px);
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    }
+}

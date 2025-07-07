@@ -3,8 +3,12 @@
 .app-banner{
     // background:blue;
     width:100%;
-    height:50px;
+    height:100px;
     padding:20px 0;
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+    background:white;
     // padding-left:20px;
     .title-card{
         font-size:40px;
@@ -17,6 +21,9 @@
         margin-top:auto;
         margin-bottom:auto;
         margin-left:20px;
-
+        cursor: pointer;
+        @media(max-width: $mobile-max-width){
+            margin-left:0;
+        }
     }
 }

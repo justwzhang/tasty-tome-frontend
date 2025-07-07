@@ -5,9 +5,10 @@
     background: $background-color;
     display:flex;
     flex-direction: column;
-    flex: 1;
+    height: calc(100vh - 100px);
     padding-top:30px;
     padding-bottom:30px;
+    overflow-y: auto;
     .header{
         @include container-box-shadow ($light-gray-200);
         box-sizing: border-box;
@@ -58,7 +59,6 @@
         background:white;
         width: 80%;
         max-width:1000px;
-        height: 100%;
         margin:auto;
         @include container-box-shadow ($light-gray-200);
         line-height: 24px; 
@@ -132,6 +132,7 @@
                         margin:auto;
                         max-width: 100%;
                         max-height:100%;
+                        object-fit: cover
                     }
                     
                 }
@@ -160,7 +161,7 @@
                         flex-wrap: wrap;
                         gap: 10px;
                         .card{
-                            @include common-padding;
+                            @include common-padding-small;
                             font-size:16px;
                             color:black;
                             display:flex;

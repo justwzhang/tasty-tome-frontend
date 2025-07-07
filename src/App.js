@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { GlobalStoreContextProvider } from './store';
 import {
   AppBanner,
+  Home,
   Recipe 
 } from './components';
 function App() {
@@ -11,7 +12,8 @@ function App() {
       <GlobalStoreContextProvider>
         <AppBanner/>
         <Routes>
-          <Route path="/" element={<Recipe />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/view/:id" element={<Recipe />} />
         </Routes>
       </GlobalStoreContextProvider>
     </BrowserRouter>
