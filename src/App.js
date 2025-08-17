@@ -4,7 +4,8 @@ import { GlobalStoreContextProvider } from './store';
 import {
   AppBanner,
   Home,
-  Recipe 
+  Recipe,
+  EditRecipe
 } from './components';
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/view/:id" element={<Recipe />} />
+          <Route path="/edit/:id" element={<EditRecipe />} />
         </Routes>
       </GlobalStoreContextProvider>
     </BrowserRouter>

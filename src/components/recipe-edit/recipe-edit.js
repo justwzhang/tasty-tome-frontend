@@ -1,4 +1,4 @@
-import "./recipe.scss"
+import "./recipe-edit.scss"
 import { useState, useMemo } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUser,faPenToSquare } from "@fortawesome/free-regular-svg-icons";
@@ -6,7 +6,7 @@ import { faStar, faUpRightFromSquare, faArrowLeft } from "@fortawesome/free-soli
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import useStore from "../../store";
-export default function Recipe(){
+export default function EditRecipe(){
     const {id} = useParams();
     const navigate = useNavigate();
     const {store} = useStore();
@@ -14,23 +14,23 @@ export default function Recipe(){
     const recipe = useMemo(()=>{return store.recipes.filter((recipe)=>{return recipe.id === parseInt(id)})[0]}, store.recipes);
     const ingredientsJSX = useMemo(()=>{ return recipe.ingredients.map((item)=>{return <li>{item}</li>})}, [recipe.ingredients]); // creates all the instructions for recipe
     const instructionsJSX = useMemo(()=>{ return recipe.instructions.map((step)=>{return <li>{step}</li>})}, [recipe.instructions]); // creates all the instructions for recipe
-
     return (
-        <div className="background">
-            <div className="header">
-                <button onClick={()=>{navigate("/")}}><FontAwesomeIcon className="fa-icon" icon={faArrowLeft} /> Back To Recipes</button>
-                <div className="left-aligned">
-                    <select onChange={(e)=>{ setPaper(e.target.value) }}>
-                        <option value="lined" selected={paper=="lined"?true:false}>Lined</option>
-                        <option value="graph" selected={paper=="graph"?true:false}>Graph</option>
-                        <option value="blank" selected={paper=="blank"?true:false}>Blank</option>
-                    </select>
-                    <button onClick={()=>{navigate("/edit/"+id)}}><FontAwesomeIcon className="fa-icon" icon={faPenToSquare}/></button>
-                </div>
-                
+    <div className="background">
+        <div className="header">
+            <button onClick={()=>{navigate("/")}}><FontAwesomeIcon className="fa-icon" icon={faArrowLeft} /> Back To Recipes</button>
+            <div className="left-aligned">
+                <select onChange={(e)=>{ setPaper(e.target.value) }}>
+                    <option value="lined" selected={paper=="lined"?true:false}>Lined</option>
+                    <option value="graph" selected={paper=="graph"?true:false}>Graph</option>
+                    <option value="blank" selected={paper=="blank"?true:false}>Blank</option>
+                </select>
+                <button onClick={()=>{navigate("/edit/"+id)}}><FontAwesomeIcon className="fa-icon" icon={faPenToSquare}/></button>
             </div>
-            <div className={`paper ${paper}`}>
-                <div className="inner-container">
+            
+        </div>
+        <div className={`paper ${paper}`}>
+            <div className="inner-container">
+                <div class="title-container">
                     <div className="title-container">
                         <div className="image-container">
                             <img src={recipe.photosrc}/>
@@ -65,29 +65,11 @@ export default function Recipe(){
                             </div>
                         </div>
                     </div>
-                    
-                    <div className="main-section">
-                        <div className="sub-title">Ingredients</div>
-                        <ul className="ingredients">
-                            {ingredientsJSX}
-                        </ul>
-                    </div>
-
-                    <div className="main-section">
-                        <div className="sub-title">Instructions</div>
-                        <ol className="steps">
-                            {instructionsJSX}
-                        </ol>
-                    </div>
-                    {
-                    <div className="note">
-                        <div className="note-title">Chefs Notes</div>
-                        <div> {recipe.note}</div>
-                    </div>
-                    }
                 </div>
+                
             </div>
         </div>
+    </div>
+    
     )
 }
-
