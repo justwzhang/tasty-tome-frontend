@@ -5,7 +5,8 @@ import {
   AppBanner,
   Home,
   Recipe,
-  EditRecipe
+  EditRecipe,
+  Login,
 } from './components';
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <GlobalStoreContextProvider>
         <AppBanner/>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
+          {/* <Route path="/" element={<Home />} /> */}
           <Route path="/view/:id" element={<Recipe />} />
           <Route path="/edit/:id" element={<EditRecipe />} />
         </Routes>

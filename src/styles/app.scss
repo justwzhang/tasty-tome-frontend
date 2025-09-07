@@ -48,6 +48,11 @@ html, body{
     padding-bottom:30px;
     overflow-y: auto;
     gap:0px;
+    &.login{
+        height: 100vh;
+        border-top:none;
+    }
+
     .header{
         @include container-box-shadow ($light-gray-200);
         box-sizing: border-box;
