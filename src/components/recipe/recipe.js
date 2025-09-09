@@ -5,10 +5,12 @@ import { faClock, faUser,faPenToSquare } from "@fortawesome/free-regular-svg-ico
 import { faStar, faUpRightFromSquare, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../auth";
 import useStore from "../../store";
 export default function Recipe(){
     const {id} = useParams();
     const navigate = useNavigate();
+    const auth = useAuth();
     const {store} = useStore();
     const [paper, setPaper] = useState("lined");
     const recipe = useMemo(()=>{return store.recipes.filter((recipe)=>{return recipe.id === parseInt(id)})[0]}, store.recipes);
@@ -18,7 +20,7 @@ export default function Recipe(){
     return (
         <div className="background">
             <div className="header">
-                <button onClick={()=>{navigate("/")}}><FontAwesomeIcon className="fa-icon" icon={faArrowLeft} /> Back To Recipes</button>
+                <button onClick={()=>{navigate("/home")}}><FontAwesomeIcon className="fa-icon" icon={faArrowLeft} /> Back To Recipes</button>
                 <div className="left-aligned">
                     <select onChange={(e)=>{ setPaper(e.target.value) }}>
                         <option value="lined" selected={paper=="lined"?true:false}>Lined</option>

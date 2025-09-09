@@ -5,10 +5,12 @@ import { faClock, faUser, faPenToSquare } from "@fortawesome/free-regular-svg-ic
 import { faStar, faUpRightFromSquare, faArrowLeft, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useParams, useNavigate } from 'react-router-dom';
 import useStore from "../../store";
+import useAuth from "../../auth";
 
 export default function EditRecipe() {
     const { id } = useParams();
     const navigate = useNavigate();
+    const auth = useAuth();
     const { store } = useStore();
     const originalRecipe = store.recipes.find((recipe) => recipe.id === parseInt(id));
     // Local state for editing

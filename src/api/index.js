@@ -6,7 +6,7 @@ const api = axios.create({
 
 export const getLoggedIn = () => api.get(`/loggedIn/`);
 export const registerUser = (payload) => api.post(`/register/`, payload);
-export const loginUser = (payload) => api.post(`/login/`, payload);
+export const loginUser = (payload) => api.post(`/login/`, payload, { withCredentials: true });
 export const logoutUser = () => api.get(`/logout/`);
 
 const apis = {

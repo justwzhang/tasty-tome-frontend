@@ -9,7 +9,7 @@ export default function RecipeCard(props){
     function naviageRecipe (){
         navigate("/view/" + recipe.id);
     }
-    console.log(recipe)
+    // console.log(recipe)
     return (
         <a className="recipe-card" onClick={()=>{naviageRecipe()}}>
             <div className="image-section">

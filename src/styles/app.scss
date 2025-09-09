@@ -23,6 +23,8 @@ html, body{
     padding: 0px;
     width: fit-content;
     height: fit-content;
+    border-radius: 15px;
+    // overflow: hidden;
     button{
         @include common-padding;
         text-align: center;

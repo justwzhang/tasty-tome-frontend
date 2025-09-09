@@ -33,7 +33,7 @@ function AuthContextProvider(props) {
     });
 
     useEffect(() => {
-        if(auth.loggedIn)
+        // if(auth.loggedIn)
             auth.getLoggedIn();
             // auth.createGuest();
     }, []);
@@ -146,7 +146,8 @@ function AuthContextProvider(props) {
             authReducer({
                 type: AuthActionType.LOGOUT_USER,
                 payload: null
-            })
+            });
+            navigate("/")
         }
         asyncLogout();
     }
