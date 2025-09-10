@@ -7,7 +7,7 @@ export default function RecipeCard(props){
     const {recipe} = props;
     const navigate = useNavigate();
     function naviageRecipe (){
-        navigate("/view/" + recipe.id);
+        navigate("/view/" + recipe._id);
     }
     // console.log(recipe)
     return (

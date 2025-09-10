@@ -91,3 +91,49 @@
         }
     }
 }
+
+.modal-content{
+    height:90%;
+    width:100%;
+    // background-color: blue;
+    .modal-header{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        button{
+            background:transparent;
+            border:none;
+            cursor: pointer;
+            font-size: 24px;
+            height:40px;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+    }
+    .modal-body{
+        flex:1;
+        display: flex;
+        gap:20px;
+        flex-direction: column;
+        input{
+            font-size: 16px;
+            // color: $light-gray-800;
+            background-color: white;
+            border: 1px solid $light-gray-200;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100% !important;
+            box-sizing: border-box;
+            &:focus{
+                outline: none;
+                border-color: $primary-color-200;
+            }
+        }
+
+        .two-column{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:20px;
+        }
+    }
+}

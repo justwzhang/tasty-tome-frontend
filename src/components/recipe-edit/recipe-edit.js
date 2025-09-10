@@ -12,7 +12,7 @@ export default function EditRecipe() {
     const navigate = useNavigate();
     const auth = useAuth();
     const { store } = useStore();
-    let originalRecipe = store.recipes.find((recipe) => recipe.id === parseInt(id));
+    let originalRecipe = store.recipes.length>0?store.recipes.find((recipe) => recipe._id === id):null;
     if (!originalRecipe) {
         originalRecipe = {
             name: "",
@@ -62,6 +62,7 @@ export default function EditRecipe() {
         if (isNaN(raitingFloat)) raitingFloat = 0;
         const recipe = {
             // id: id,
+            published:originalRecipe.published,
             name,
             description,
             prepTime,
@@ -79,7 +80,7 @@ export default function EditRecipe() {
         if (id === "-1") {
             store.createRecipe(recipe);
         } else {
-            recipe.id = id;
+            recipe._id = id;
             store.saveRecipe(recipe);
         }
         // navigate("/view/" + id);
