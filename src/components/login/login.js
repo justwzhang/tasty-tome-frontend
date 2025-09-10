@@ -1,11 +1,12 @@
 import "./login.scss";
 import logo from "../../util/images/tasty-tomes-logo.png"
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useAuth } from "../../auth";
 import { SECURITY_QUESTIONS } from "../../util/constants/constants";
+import { useParams, useNavigate } from 'react-router-dom';
 export default function Login(){
     const auth =  useAuth();
-
+    const navigate = useNavigate();
     const [isLogin, setLogin] = useState(true);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -17,7 +18,11 @@ export default function Login(){
     const [securityQuestion2, setSecurityQuestion2] = useState("");
     const [securityAnswer1, setSecurityAnswer1] = useState("");
     const [securityAnswer2, setSecurityAnswer2] = useState("");
-
+    useEffect(() => {
+        if (!auth.user == null) {
+            navigate("/home");
+        }
+    });
     function handleCreate(){
         let data = {
             firstName: firstName,

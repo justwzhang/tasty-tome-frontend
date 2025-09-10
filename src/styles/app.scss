@@ -17,6 +17,11 @@ html, body{
     flex:1;
 }
 
+.edit-recipe-input{
+    background:white;
+    border-radius: 10px;
+}
+
 .button-group{
     @include common-border($secondary-color);
     @include flex-row;

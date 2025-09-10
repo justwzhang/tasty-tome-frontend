@@ -15,9 +15,18 @@ export const GlobalStoreActionType = {
 }
 function GlobalStoreContextProvider(props){
     const [store, setStore] = useState({
-        recipes: [...testRecipes]
+        // recipes: [...testRecipes]
+        recipes: []
     });
 
+
+    store.saveRecipe = function(recipe){
+        
+    }
+
+    store.createRecipe = function(newRecipe){
+
+    }
 
 
     return (

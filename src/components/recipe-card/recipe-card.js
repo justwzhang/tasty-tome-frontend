@@ -13,7 +13,7 @@ export default function RecipeCard(props){
     return (
         <a className="recipe-card" onClick={()=>{naviageRecipe()}}>
             <div className="image-section">
-                <img src={recipe.photosrc}/>
+                {/* <img src={recipe.photosrc}/> */}
             </div>
             <div className="recipe-info">
                 <div className="title">

@@ -11,3 +11,19 @@ export const SECURITY_QUESTIONS = [
 	"What is your favorite book?",
 	"What is your father’s middle name?"
 ];
+
+// category
+export const CATEGORIES = [
+	"Appetizer",
+	"Main Course",
+	"Dessert",
+	"Salad",
+	"Soup",
+	"Side Dishe",
+	"Beverage",
+	"Snack",
+	"Breakfast",
+	"Vegan",
+	"Vegetarian",
+	"Sauce"
+];

@@ -12,8 +12,6 @@ export default function AppBanner(){
     useEffect(() => {
         if (auth.user == null) {
             navigate("/");
-        }else{
-            navigate("/home");
         }
     }, [auth.user, navigate]);
     useEffect(() => {

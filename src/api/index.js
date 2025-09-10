@@ -9,6 +9,11 @@ export const registerUser = (payload) => api.post(`/register/`, payload);
 export const loginUser = (payload) => api.post(`/login/`, payload, { withCredentials: true });
 export const logoutUser = () => api.get(`/logout/`);
 
+export const getAllRecipes = () => api.get(`/recipes/`);
+export const updateRecipes = (id, payload) => api.put(`/recipe/${id}`, payload);
+export const createRecipe = (payload) => api.post(`/recipe/`, payload);
+export const deleteRecipe = (id) => api.delete(`/recipe/${id}`);
+
 const apis = {
     getLoggedIn,
     registerUser,

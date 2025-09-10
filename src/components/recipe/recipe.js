@@ -12,7 +12,7 @@ export default function Recipe(){
     const navigate = useNavigate();
     const auth = useAuth();
     const {store} = useStore();
-    const [paper, setPaper] = useState("lined");
+    const [paper, setPaper] = useState("graph");
     const recipe = useMemo(()=>{return store.recipes.filter((recipe)=>{return recipe.id === parseInt(id)})[0]}, store.recipes);
     const ingredientsJSX = useMemo(()=>{ return recipe.ingredients.map((item)=>{return <li>{item}</li>})}, [recipe.ingredients]); // creates all the instructions for recipe
     const instructionsJSX = useMemo(()=>{ return recipe.instructions.map((step)=>{return <li>{step}</li>})}, [recipe.instructions]); // creates all the instructions for recipe
@@ -34,9 +34,9 @@ export default function Recipe(){
             <div className={`paper ${paper}`}>
                 <div className="inner-container">
                     <div className="title-container">
-                        <div className="image-container">
+                        {/* <div className="image-container">
                             <img src={recipe.photosrc}/>
-                        </div>
+                        </div> */}
                         <div className="title-section">
                             <div className="title-card">{recipe.name}</div>
                             <div className="description">{recipe.description}</div>

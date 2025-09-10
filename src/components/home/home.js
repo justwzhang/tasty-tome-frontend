@@ -25,7 +25,7 @@ export default function Home(){
                     <input className="search-bar" placeholder="Search Recipe Names"/>
                     <div className="button-group">
                         <button> <FontAwesomeIcon icon={faFilter} className="icon"/> Filter</button>
-                        <button> <FontAwesomeIcon icon={faPlus} className="icon"/> Create</button>
+                        <button onClick={()=>{navigate("/edit/-1")}}> <FontAwesomeIcon icon={faPlus} className="icon"/> Create</button>
                     </div>
 
                 </div>
