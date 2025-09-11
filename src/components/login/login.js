@@ -66,7 +66,7 @@ export default function Login(){
             </div>
             <div className="login-input">
                 <label className="login-label">Password</label>
-                <input type="password" onChange={(e)=>{console.log(e.target.value);setPassword(e.target.value)}}/>
+                <input type="password" onChange={(e)=>{setPassword(e.target.value)}}/>
             </div>
             <button className="login-button" onClick={()=>{handleLogin()}}>Sign In</button>
             <button className="forgot-password">Forgot Your Password?</button>

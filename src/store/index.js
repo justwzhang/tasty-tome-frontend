@@ -75,19 +75,26 @@ function GlobalStoreContextProvider(props){
                 enqueueSnackbar("Error Creating Recipe!", { variant: 'error' });
             }
         }catch(err){
-            console.log(err);
+            // console.log(err);
             enqueueSnackbar("Title and type are required", { variant: 'error' });
         }
     }
 
     store.getAllRecipes = async function(){
-        const response = await getAllRecipes();
-        if(response.status === 200){
-            // console.log(response);
-            storeReducer({
-                type: GlobalStoreActionType.GET_ALL_RECIPES,
-                payload: {recipes: [...response.data.data]}}, setStore);
+        try{
+            const response = await getAllRecipes();
+            if(response.status === 200){
+                // console.log(response);
+                storeReducer({
+                    type: GlobalStoreActionType.GET_ALL_RECIPES,
+                    payload: {recipes: [...response.data.data]}}, setStore);
+            }else{
+                enqueueSnackbar("Error Retrieving Recipes!", { variant: 'error' });
+            }
+        }catch(err){
+            enqueueSnackbar("Error Retrieving Recipes!", { variant: 'error' });
         }
+        
     }
 
     store.deleteRecipe = async function(id) {
@@ -106,7 +113,7 @@ function GlobalStoreContextProvider(props){
                 enqueueSnackbar("Error Deleting Recipe!", { variant: 'error' });
             }
         } catch (err) {
-            console.log(err);
+            // console.log(err);
             enqueueSnackbar("Error Deleting Recipe!", { variant: 'error' });
         }
     }

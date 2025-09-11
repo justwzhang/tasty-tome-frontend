@@ -15,7 +15,7 @@ export default function Recipe(){
     const {store} = useStore();
     const [paper, setPaper] = useState("graph");
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-    console.log(store.recipes)
+    // console.log(store.recipes)
     const recipe = useMemo(()=>{return store.recipes.filter((recipe)=>{return recipe._id === id})[0]}, store.recipes);
     if(auth.user && auth.user.id != recipe.owner && !recipe.published){
         navigate("/home");

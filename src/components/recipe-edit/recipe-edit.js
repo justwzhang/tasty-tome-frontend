@@ -80,7 +80,7 @@ export default function EditRecipe() {
             note,
             owner: auth.user.id 
         };
-        console.log(recipe)
+        // console.log(recipe)
         if (id === "-1") {
             recipe.published = false;
             store.createRecipe(recipe);
