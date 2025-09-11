@@ -34,7 +34,11 @@ function AuthContextProvider(props) {
 
     useEffect(() => {
         // if(auth.loggedIn)
+        try{
             auth.getLoggedIn();
+        }catch(err){
+            // console.log(err);
+        }
             // auth.createGuest();
     }, []);
 

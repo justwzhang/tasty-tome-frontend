@@ -28,6 +28,10 @@ export default function EditRecipe() {
             instructions: [],
             note: ""
         };
+    }else{
+        if (auth.user && auth.user.id != originalRecipe.owner && id !== "-1") {
+            navigate("/home");
+        }
     }
     // Local state for editing
     const [paper, setPaper] = useState("graph");
@@ -78,6 +82,7 @@ export default function EditRecipe() {
         };
         console.log(recipe)
         if (id === "-1") {
+            recipe.published = false;
             store.createRecipe(recipe);
         } else {
             recipe._id = id;
@@ -106,7 +111,7 @@ export default function EditRecipe() {
                         <div className="title-section">
                             <label className="edit-recipe-label">
                                 Title
-                                <input className="title-card text-box" value={name} onChange={e => setName(e.target.value)} placeholder="Recipe Name" />
+                                <input className="title-card text-box" value={name} onChange={e => setName(e.target.value)} placeholder="Recipe Name"/>
                             </label>
                             <label className="edit-recipe-label">
                                 Description

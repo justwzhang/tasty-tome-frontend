@@ -26,10 +26,12 @@ export default function Home(){
 
 
     const auth = useAuth();
+    
     let recipes = store.recipes.filter((recipe)=>{
+        if (!auth.user) return false;
         const isMine = recipe.owner == auth.user.id;
         return (
-            ((yoursSelected && isMine) || (!yoursSelected && !isMine)) && // whether it is yours or not
+            ((yoursSelected && isMine) || (!yoursSelected && !isMine && recipe.published)) && // whether it is yours or not
             (recipe.name.toLowerCase().includes(nameFilter.toLowerCase()) || nameFilter == "") && // name filter
             (type == "" || recipe.type == type) && // type filter
             (ingredient == "" || recipe.ingredients.some(ing=>ing.toLowerCase().includes(ingredient.toLowerCase()))) && // ingredient filter

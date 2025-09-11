@@ -1,3 +1,4 @@
+    
 import { createContext, useState, useContext, useEffect } from "react"
 import {testRecipes} from "../util/example-data"
 import { getAllRecipes, updateRecipes, createRecipe, deleteRecipe } from "../api";
@@ -35,45 +36,78 @@ function GlobalStoreContextProvider(props){
     },[auth.user] )
 
     store.saveRecipe = async function(recipe){
-        const response = await updateRecipes(recipe._id, recipe);
-        if (response.status === 200 || response.status === 201) {
-            // Replace the updated recipe in the recipes array
-            const updatedRecipes = store.recipes.map(r =>
-                r._id === recipe._id ? recipe : r
-            );
-            storeReducer({
-                type: GlobalStoreActionType.GET_ALL_RECIPES,
-                payload: { recipes: updatedRecipes }
-            }, setStore);
-            navigate("/view/" + recipe._id);
-            enqueueSnackbar("Recipe Updated!", { variant: 'success' });
-        }else{
-            enqueueSnackbar("Error Updating Recipe!", { variant: 'error' });
+        try{
+            const response = await updateRecipes(recipe._id, recipe);
+            if (response.status === 200 || response.status === 201) {
+                // Replace the updated recipe in the recipes array
+                const updatedRecipes = store.recipes.map(r =>
+                    r._id === recipe._id ? recipe : r
+                );
+                storeReducer({
+                    type: GlobalStoreActionType.GET_ALL_RECIPES,
+                    payload: { recipes: updatedRecipes }
+                }, setStore);
+                navigate("/view/" + recipe._id);
+                enqueueSnackbar("Recipe Updated!", { variant: 'success' });
+            }else{
+                enqueueSnackbar("Error Updating Recipe!", { variant: 'error' });
+            }
+        }catch(err){
+            // console.log(err);
+            enqueueSnackbar("Title and type are required", { variant: 'error' });
         }
+        
     }
 
     store.createRecipe = async function(newRecipe){
-        const response = await createRecipe(newRecipe);
-        if(response.status === 201 || response.status === 200){
-            // Add the new recipe to the recipes array
-            storeReducer({
-                type: GlobalStoreActionType.GET_ALL_RECIPES,
-                payload: { recipes: [...store.recipes, response.data.recipe] }
-            }, setStore);
-            enqueueSnackbar("Recipe Created!", { variant: 'success' });
-            navigate("/view/" + response.data.recipe._id);
-        }else{
-            enqueueSnackbar("Error Creating Recipe!", { variant: 'error' });
+        
+        try{
+            const response = await createRecipe(newRecipe);
+            if(response.status === 201 || response.status === 200){
+                // Add the new recipe to the recipes array
+                storeReducer({
+                    type: GlobalStoreActionType.GET_ALL_RECIPES,
+                    payload: { recipes: [...store.recipes, response.data.recipe] }
+                }, setStore);
+                enqueueSnackbar("Recipe Created!", { variant: 'success' });
+                navigate("/view/" + response.data.recipe._id);
+            }else{
+                enqueueSnackbar("Error Creating Recipe!", { variant: 'error' });
+            }
+        }catch(err){
+            console.log(err);
+            enqueueSnackbar("Title and type are required", { variant: 'error' });
         }
     }
 
     store.getAllRecipes = async function(){
         const response = await getAllRecipes();
         if(response.status === 200){
-            console.log(response);
+            // console.log(response);
             storeReducer({
                 type: GlobalStoreActionType.GET_ALL_RECIPES,
                 payload: {recipes: [...response.data.data]}}, setStore);
+        }
+    }
+
+    store.deleteRecipe = async function(id) {
+        try {
+            const response = await deleteRecipe(id);
+            if (response.status === 200 || response.status === 204) {
+                // Remove the recipe from the recipes array
+                const updatedRecipes = store.recipes.filter(r => r._id !== id);
+                storeReducer({
+                    type: GlobalStoreActionType.GET_ALL_RECIPES,
+                    payload: { recipes: updatedRecipes }
+                }, setStore);
+                enqueueSnackbar("Recipe Deleted!", { variant: 'success' });
+                navigate("/home");
+            } else {
+                enqueueSnackbar("Error Deleting Recipe!", { variant: 'error' });
+            }
+        } catch (err) {
+            console.log(err);
+            enqueueSnackbar("Error Deleting Recipe!", { variant: 'error' });
         }
     }
 

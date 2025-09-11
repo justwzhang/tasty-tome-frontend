@@ -22,7 +22,7 @@ export default function Login(){
         if (!auth.user == null) {
             navigate("/home");
         }
-    });
+    }, [auth.user]);
     function handleCreate(){
         let data = {
             firstName: firstName,

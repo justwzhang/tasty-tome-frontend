@@ -78,6 +78,21 @@ html, body{
             color: white;
             border:none;
             cursor: pointer;
+            &.publish{
+                border:none;
+                border-radius: 10px;;
+                background:rgb(41, 172, 41);
+                padding:5px 15px;
+                color:white;
+            }
+
+            &.delete{
+                border:none;
+                border-radius: 10px;;
+                background:rgb(214, 46, 46);
+                padding:5px 15px;
+                color:white;
+            }
         }
         .left-aligned{
             height:100%;
@@ -162,4 +177,33 @@ html, body{
             }
         }
     }
+}
+
+.delete-confirm{
+    border:none;
+    border-radius: 10px;
+    background:rgb(214, 46, 46);
+    padding:10px 20px;
+    color:white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cancel{
+    border:none;
+    border-radius: 10px;
+    background:rgb(41, 172, 41);
+    padding:5px 15px;
+    color:white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.modal-button-group{
+    display:flex;
+    flex-direction: row;
+    gap:20px;
+    justify-content: center;
+    margin-top: 20px;
 }

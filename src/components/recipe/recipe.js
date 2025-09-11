@@ -7,28 +7,49 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../auth";
 import useStore from "../../store";
+import Modal from "react-modal";
 export default function Recipe(){
     const {id} = useParams();
     const navigate = useNavigate();
     const auth = useAuth();
     const {store} = useStore();
     const [paper, setPaper] = useState("graph");
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     console.log(store.recipes)
     const recipe = useMemo(()=>{return store.recipes.filter((recipe)=>{return recipe._id === id})[0]}, store.recipes);
+    if(auth.user && auth.user.id != recipe.owner && !recipe.published){
+        navigate("/home");
+    }
     const ingredientsJSX = useMemo(()=>{ return recipe.ingredients.map((item)=>{return <li>{item}</li>})}, [recipe.ingredients]); // creates all the instructions for recipe
     const instructionsJSX = useMemo(()=>{ return recipe.instructions.map((step)=>{return <li>{step}</li>})}, [recipe.instructions]); // creates all the instructions for recipe
 
+    function publish(){
+        recipe.published = true;
+        store.saveRecipe(recipe);
+    }
+
     return (
+        <>
         <div className="background">
             <div className="header">
                 <button onClick={()=>{navigate("/home")}}><FontAwesomeIcon className="fa-icon" icon={faArrowLeft} /> Back To Recipes</button>
                 <div className="left-aligned">
+                    {auth.user && auth.user.id == recipe.owner?
+                    <>
+                        <button className="delete" onClick={()=>{setDeleteModalOpen(true)}}>Delete</button>
+                        {!recipe.published?
+                        <button className="publish" onClick={()=>{publish()}}>Publish</button>:<></>
+                        }
+                    </>
+                    :<></>
+                    }
                     <select onChange={(e)=>{ setPaper(e.target.value) }}>
                         <option value="lined" selected={paper=="lined"?true:false}>Lined</option>
                         <option value="graph" selected={paper=="graph"?true:false}>Graph</option>
                         <option value="blank" selected={paper=="blank"?true:false}>Blank</option>
                     </select>
-                    <button onClick={()=>{navigate("/edit/"+id)}}><FontAwesomeIcon className="fa-icon" icon={faPenToSquare}/></button>
+                    {auth.user && auth.user.id == recipe.owner?
+                    <button onClick={()=>{navigate("/edit/"+id)}}><FontAwesomeIcon className="fa-icon" icon={faPenToSquare}/></button>:<></>}
                 </div>
                 
             </div>
@@ -91,6 +112,45 @@ export default function Recipe(){
                 </div>
             </div>
         </div>
+        <Modal
+            isOpen={deleteModalOpen}
+            nRequestClose={() => setDeleteModalOpen(false)} 
+            style={{
+                content: {
+                    maxWidth: '600px',
+                    maxHeight: '200px',
+                    height: "90%",
+                    width: '90%',
+                    margin: 'auto',
+                    borderRadius: '10px',
+                    padding: '15px',
+                },
+                overlay: {
+                    backgroundColor: 'rgba(0,0,0,0.4)'
+                }
+            }}
+        >
+            <div className="modal-content">
+                <div className="modal-header">
+                    <h2>Are You Sure?</h2>
+                    <button onClick={() => setDeleteModalOpen(false)}>X</button>
+                </div>
+                 <div className="modal-body">
+                    This is Perminent!
+                    {/* <div className="button-group"> */}
+                    <div className="modal-button-group">
+                        <button className="delete-confirm" onClick={()=>{
+                            store.deleteRecipe(recipe._id);
+                            navigate("/home");
+                        }}>Delete</button>
+                        <button className="cancel" onClick={()=>{setDeleteModalOpen(false)}}>Cancel</button>
+                    </div>
+                        
+                    {/* </div> */}
+                 </div>
+            </div>
+        </Modal>
+        </>
     )
 }
 
